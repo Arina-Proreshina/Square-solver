@@ -1,0 +1,343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.11.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Solve square equation: Файл main.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Solve square equation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.11.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл main.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Программа для решения квадратного уравнения.  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;locale.h&gt;</code><br />
+<code>#include &lt;assert.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_square_equation_coefficient.html">SquareEquationCoefficient</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Структура для хранения коэффициентов квадратного уравнения.  <a href="struct_square_equation_coefficient.html#details">Подробнее...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_square_equation_result.html">SquareEquationResult</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Структура для хранения результатов решения квадратного уравнения.  <a href="struct_square_equation_result.html#details">Подробнее...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a5d069cc9f308f1edef0206403012029e" id="r_a5d069cc9f308f1edef0206403012029e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d069cc9f308f1edef0206403012029e">my_isdigit</a> (int c)</td></tr>
+<tr class="memdesc:a5d069cc9f308f1edef0206403012029e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверяет, является ли символ цифрой (0-9).  <br /></td></tr>
+<tr class="separator:a5d069cc9f308f1edef0206403012029e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85955ecbca13cacee97a09e664f64a0b" id="r_a85955ecbca13cacee97a09e664f64a0b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_square_equation_result.html">SquareEquationResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85955ecbca13cacee97a09e664f64a0b">solve_square_equation</a> (const <a class="el" href="struct_square_equation_coefficient.html">SquareEquationCoefficient</a> *coeffts)</td></tr>
+<tr class="memdesc:a85955ecbca13cacee97a09e664f64a0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Решает квадратное уравнение ax^2 + bx + c = 0.  <br /></td></tr>
+<tr class="separator:a85955ecbca13cacee97a09e664f64a0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecfb23af3ac2dc2901e01a41ac68e6e3" id="r_aecfb23af3ac2dc2901e01a41ac68e6e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aecfb23af3ac2dc2901e01a41ac68e6e3">print_solution</a> (const <a class="el" href="struct_square_equation_result.html">SquareEquationResult</a> *result)</td></tr>
+<tr class="memdesc:aecfb23af3ac2dc2901e01a41ac68e6e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Печатает решение квадратного уравнения.  <br /></td></tr>
+<tr class="separator:aecfb23af3ac2dc2901e01a41ac68e6e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e9d353a1de9c066f98ed62817e90dc6" id="r_a1e9d353a1de9c066f98ed62817e90dc6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e9d353a1de9c066f98ed62817e90dc6">is_number</a> (const char *str)</td></tr>
+<tr class="memdesc:a1e9d353a1de9c066f98ed62817e90dc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверяет, является ли строка числом.  <br /></td></tr>
+<tr class="separator:a1e9d353a1de9c066f98ed62817e90dc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ad48198e777f7808dcee727384d7787" id="r_a0ad48198e777f7808dcee727384d7787"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ad48198e777f7808dcee727384d7787">get_number_input</a> (double *value, const char *message)</td></tr>
+<tr class="memdesc:a0ad48198e777f7808dcee727384d7787"><td class="mdescLeft">&#160;</td><td class="mdescRight">Получает числовой ввод от пользователя.  <br /></td></tr>
+<tr class="separator:a0ad48198e777f7808dcee727384d7787"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
+<tr class="memdesc:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Главная функция программы.  <br /></td></tr>
+<tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:af0ae0be9e2237926cc90838f9f4a74aa" id="r_af0ae0be9e2237926cc90838f9f4a74aa"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0ae0be9e2237926cc90838f9f4a74aa">INPUT_SIZE</a> = 100</td></tr>
+<tr class="memdesc:af0ae0be9e2237926cc90838f9f4a74aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Размер буфера для ввода данных.  <br /></td></tr>
+<tr class="separator:af0ae0be9e2237926cc90838f9f4a74aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Программа для решения квадратного уравнения. </p>
+<p>Эта программа позволяет пользователю ввести коэффициенты квадратного уравнения и вычислить его корни. Она включает в себя функции для проверки ввода, решения квадратного уравнения и печати результатов.</p>
+<p>Программа использует следующие функции:</p><ul>
+<li><a class="el" href="#a5d069cc9f308f1edef0206403012029e">my_isdigit</a> для проверки, является ли символ цифрой.</li>
+<li><a class="el" href="#a85955ecbca13cacee97a09e664f64a0b">solve_square_equation</a> для вычисления корней квадратного уравнения.</li>
+<li><a class="el" href="#aecfb23af3ac2dc2901e01a41ac68e6e3">print_solution</a> для печати результатов.</li>
+<li><a class="el" href="#a1e9d353a1de9c066f98ed62817e90dc6">is_number</a> для проверки, является ли строка числом.</li>
+<li><a class="el" href="#a0ad48198e777f7808dcee727384d7787">get_number_input</a> для получения числового ввода от пользователя.</li>
+<li><a class="el" href="#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> является главной функцией программы. </li>
+</ul>
+</div><h2 class="groupheader">Функции</h2>
+<a id="a0ad48198e777f7808dcee727384d7787" name="a0ad48198e777f7808dcee727384d7787"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ad48198e777f7808dcee727384d7787">&#9670;&#160;</a></span>get_number_input()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool get_number_input </td>
+          <td>(</td>
+          <td class="paramtype">double *</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>message</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Получает числовой ввод от пользователя. </p>
+<p>Эта функция запрашивает у пользователя ввод числового значения и проверяет его корректность.</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>Указатель на переменную, в которую будет записано значение. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">message</td><td>Сообщение, которое будет отображено пользователю. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true Если ввод был корректным числом. </dd>
+<dd>
+false Если ввод не был числом. </dd></dl>
+
+</div>
+</div>
+<a id="a1e9d353a1de9c066f98ed62817e90dc6" name="a1e9d353a1de9c066f98ed62817e90dc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e9d353a1de9c066f98ed62817e90dc6">&#9670;&#160;</a></span>is_number()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool is_number </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>str</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Проверяет, является ли строка числом. </p>
+<p>Эта функция проверяет, содержит ли строка корректное числовое значение (включая вещественные числа).</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">str</td><td>Указатель на строку, которую нужно проверить. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true Если строка является числом. </dd>
+<dd>
+false Если строка не является числом. </dd></dl>
+
+</div>
+</div>
+<a id="ae66f6b31b5ad750f1fe042a706a4e3d4" name="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae66f6b31b5ad750f1fe042a706a4e3d4">&#9670;&#160;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Главная функция программы. </p>
+<p>Эта функция устанавливает локаль, получает коэффициенты уравнения от пользователя, решает квадратное уравнение и выводит результат.</p>
+<dl class="section return"><dt>Возвращает</dt><dd>int Код завершения программы. Возвращает 0 при успешном завершении, -1 при ошибке ввода. </dd></dl>
+
+</div>
+</div>
+<a id="a5d069cc9f308f1edef0206403012029e" name="a5d069cc9f308f1edef0206403012029e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d069cc9f308f1edef0206403012029e">&#9670;&#160;</a></span>my_isdigit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool my_isdigit </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>c</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Проверяет, является ли символ цифрой (0-9). </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>Символ для проверки. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true Если символ является цифрой. </dd>
+<dd>
+false Если символ не является цифрой. </dd></dl>
+
+</div>
+</div>
+<a id="aecfb23af3ac2dc2901e01a41ac68e6e3" name="aecfb23af3ac2dc2901e01a41ac68e6e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecfb23af3ac2dc2901e01a41ac68e6e3">&#9670;&#160;</a></span>print_solution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void print_solution </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_square_equation_result.html">SquareEquationResult</a> *</td>          <td class="paramname"><span class="paramname"><em>result</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Печатает решение квадратного уравнения. </p>
+<p>Эта функция принимает структуру <a class="el" href="struct_square_equation_result.html" title="Структура для хранения результатов решения квадратного уравнения.">SquareEquationResult</a> и печатает соответствующее сообщение в зависимости от типа результата.</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">result</td><td>Указатель на структуру <a class="el" href="struct_square_equation_result.html" title="Структура для хранения результатов решения квадратного уравнения.">SquareEquationResult</a>, содержащую результаты. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a85955ecbca13cacee97a09e664f64a0b" name="a85955ecbca13cacee97a09e664f64a0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85955ecbca13cacee97a09e664f64a0b">&#9670;&#160;</a></span>solve_square_equation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_square_equation_result.html">SquareEquationResult</a> solve_square_equation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_square_equation_coefficient.html">SquareEquationCoefficient</a> *</td>          <td class="paramname"><span class="paramname"><em>coeffts</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Решает квадратное уравнение ax^2 + bx + c = 0. </p>
+<p>Эта функция вычисляет дискриминант и на основе его значения определяет корни квадратного уравнения. Результаты хранятся в структуре <a class="el" href="struct_square_equation_result.html" title="Структура для хранения результатов решения квадратного уравнения.">SquareEquationResult</a>.</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">coeffts</td><td>Указатель на структуру <a class="el" href="struct_square_equation_coefficient.html" title="Структура для хранения коэффициентов квадратного уравнения.">SquareEquationCoefficient</a>, содержащую коэффициенты уравнения. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd><a class="el" href="struct_square_equation_result.html" title="Структура для хранения результатов решения квадратного уравнения.">SquareEquationResult</a> Структура, содержащая корни уравнения и тип результата. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="af0ae0be9e2237926cc90838f9f4a74aa" name="af0ae0be9e2237926cc90838f9f4a74aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0ae0be9e2237926cc90838f9f4a74aa">&#9670;&#160;</a></span>INPUT_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int INPUT_SIZE = 100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Размер буфера для ввода данных. </p>
+<p>Эта константа используется для определения размера массива, в который сохраняется ввод пользователя. Размер установлен на 100 символов.</p>
+<dl class="section note"><dt>Заметки</dt><dd>Размер буфера может быть изменен в зависимости от требований программы или ограничений системы. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
