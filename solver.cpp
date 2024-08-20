@@ -5,14 +5,18 @@
 #include <stdbool.h>
 #include "solver.h"
 
-static const double EPSILON = 1e-6;
+const double EPSILON = 1e-6;
 
 static bool is_zero(double value) {
     return fabs(value) < EPSILON;
 }
 
+static inline double calculate_dscr(double a, double b, double c){
+    return b * b - 4 * a * c;
+}
+
 static SquareEquationResult solve_linear_equation(SquareEquationCoefficient coeffts) {
-    SquareEquationResult result;
+    SquareEquationResult result = {0,0};
 
     if (is_zero(coeffts.b)) {
         if (is_zero(coeffts.c)) {
@@ -34,10 +38,10 @@ SquareEquationResult solve_square_equation(SquareEquationCoefficient coeffts) {
     if (is_zero(coeffts.a)) {
         result = solve_linear_equation(coeffts);
     } else {
-        double dscr = coeffts.b * coeffts.b - 4 * coeffts.a * coeffts.c;
-        double dscr_sqrt = sqrt(dscr);
+        double dscr = calculate_dscr(coeffts.a, coeffts.b, coeffts.c);
 
         if (dscr > 0) {
+        double dscr_sqrt = sqrt(dscr);
         result.x1 = (-coeffts.b + dscr_sqrt) / (2 * coeffts.a);
         result.x2 = (-coeffts.b - dscr_sqrt) / (2 * coeffts.a);
         result.result_type = TwoRoots;
