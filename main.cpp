@@ -57,7 +57,7 @@ int main() {
          "2. Решение квадратного уравнения\n"
          "Введите номер режима: ");
     if (scanf("%d", &choice) != 1) {
-        fprintf(stderr, "Ошибка ввода.\n");  
+        printf("Ошибка ввода.\n");
         return ERROR_CODE;
     }
 
