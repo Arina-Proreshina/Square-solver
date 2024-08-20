@@ -4,8 +4,9 @@
 #include <assert.h>
 #include <stdbool.h>
 #include "input_output_solver.h"
+#include "error_code.h"
 
-static const int NUM_COEFFS = 3;
+const int NUM_COEFFS = 3;
 
 static bool get_number_input(double* value, const char* message) {
     assert(value != NULL);
@@ -17,10 +18,13 @@ static bool get_number_input(double* value, const char* message) {
         int result = scanf("%lf", value);
 
         if (result == 1) {
-            while (getchar() != '\n');
+
+            while (getchar() != '\n')
+                ;
+
             return true;
         } else {
-            printf("Îøèáêà ââîäà! Ââåäèòå ÷èñëîâîå çíà÷åíèå.\n");
+            printf("ÐžÑˆÐ¸Ð±ÐºÐ° Ð²Ð²Ð¾Ð´Ð°! Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾Ð²Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ.\n");
             return false;
         }
         printf("%s", message);
@@ -29,12 +33,12 @@ static bool get_number_input(double* value, const char* message) {
 
 int get_coefficients(SquareEquationCoefficient* coeffts) {
     const char* messages[] = {
-        "Ââåäèòå êîýôôèöèåíò a: ",
-        "Ââåäèòå êîýôôèöèåíò b: ",
-        "Ââåäèòå êîýôôèöèåíò c: "
+        "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚ a: ",
+        "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚ b: ",
+        "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚ c: "
     };
 
-    double* coeffs[] = { &coeffts->a, &coeffts->b, &coeffts->c };
+    double* coeffs[NUM_COEFFS] = { &coeffts->a, &coeffts->b, &coeffts->c };
 
     for (size_t i = 0; i < NUM_COEFFS; i++) {
         if (!get_number_input(coeffs[i], messages[i])) {
@@ -47,19 +51,19 @@ int get_coefficients(SquareEquationCoefficient* coeffts) {
 void print_solution(SquareEquationResult result) {
     switch (result.result_type) {
         case InfRoots:
-            printf("Óðàâíåíèå èìååò áåñêîíå÷íî ìíîãî êîðíåé.\n");
+            printf("Ð£Ñ€Ð°Ð²Ð½ÐµÐ½Ð¸Ðµ Ð¸Ð¼ÐµÐµÑ‚ Ð±ÐµÑÐºÐ¾Ð½ÐµÑ‡Ð½Ð¾ Ð¼Ð½Ð¾Ð³Ð¾ ÐºÐ¾Ñ€Ð½ÐµÐ¹.\n");
             break;
         case TwoRoots:
-            printf("Êîðíè óðàâíåíèÿ: x1 = %.2f, x2 = %.2f\n", result.x1, result.x2);
+            printf("ÐšÐ¾Ñ€Ð½Ð¸ ÑƒÑ€Ð°Ð²Ð½ÐµÐ½Ð¸Ñ: x1 = %.2f, x2 = %.2f\n", result.x1, result.x2);
             break;
         case OneRoot:
-            printf("Îäèí êîðåíü óðàâíåíèÿ: x = %.2f\n", result.x1);
+            printf("ÐžÐ´Ð¸Ð½ ÐºÐ¾Ñ€ÐµÐ½ÑŒ ÑƒÑ€Ð°Ð²Ð½ÐµÐ½Ð¸Ñ: x = %.2f\n", result.x1);
             break;
         case NoRoots:
-            printf("Óðàâíåíèå íå èìååò âåùåñòâåííûõ êîðíåé.\n");
+            printf("Ð£Ñ€Ð°Ð²Ð½ÐµÐ½Ð¸Ðµ Ð½Ðµ Ð¸Ð¼ÐµÐµÑ‚ Ð²ÐµÑ‰ÐµÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ñ… ÐºÐ¾Ñ€Ð½ÐµÐ¹.\n");
             break;
         default:
-            printf("Îøèáêà: Íåèçâåñòíûé òèï ðåçóëüòàòà.\n");
+            printf("ÐžÑˆÐ¸Ð±ÐºÐ°: ÐÐµÐ¸Ð·Ð²ÐµÑÑ‚Ð½Ñ‹Ð¹ Ñ‚Ð¸Ð¿ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð°.\n");
             break;
     }
 }
