@@ -18,10 +18,16 @@ static bool get_number_input(double* value, const char* message) {
         int result = scanf("%lf", value);
 
         if (result == 1) {
-
-            while (getchar() != '\n')
-                ;
-
+            int ch = 0;
+            while ((ch = getchar()) != '\n' && (ch = getchar()) != EOF) {
+                if (ch != ' ' && ch != '\t' && ch != EOF) {
+                    printf("Ошибка ввода! Введите числовое значение.\n");
+                    return false;
+                }else if (ch == EOF) {
+                    printf("Ошибка ввода! Обнаружен EOF.\n");
+                    return false;
+                }
+            }
             return true;
         } else {
             printf("Ошибка ввода! Введите числовое значение.\n");
