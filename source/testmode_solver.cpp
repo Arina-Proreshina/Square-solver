@@ -21,56 +21,62 @@ struct Test {
     double expected_x2;
 };
 
-enum TestResult run_test(struct Test test, int test_num) {
-    SquareEquationCoefficient coeffs = { test.a, test.b, test.c };
-    SquareEquationResult result = solve_square_equation(coeffs);
+void print_test_result(int test_num, const struct Test* test, const SquareEquationResult* result, enum TestResult test_result) {
+    if (test_result == TEST_PASSED) {
+        printf("РўРµСЃС‚ в„– %d РїСЂРѕР№РґРµРЅ\n", test_num);
+    } else {
+        printf("РўРµСЃС‚ в„– %d РќР• РїСЂРѕР№РґРµРЅ\n\tРљРѕСЌС„С„РёС†РёРµРЅС‚С‹: a = %lg, b = %lg, c = %lg\n",
+            test_num, test->a, test->b, test->c);
+        printf("\tРћР¶РёРґР°РµРјРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РєРѕСЂРЅРµР№: %d\n", test->expected_roots_num);
 
-    if (result.result_type == test.expected_roots_num) {
-        switch (result.result_type) {
+        if (test->expected_roots_num == OneRoot) {
+            printf("\tРћР¶РёРґР°РµРјС‹Р№ РєРѕСЂРµРЅСЊ: x = %lg\n", test->expected_x1);
+        } else if (test->expected_roots_num == TwoRoots) {
+            printf("\tРћР¶РёРґР°РµРјС‹Рµ РєРѕСЂРЅРё: x1 = %lg, x2 = %lg\n", test->expected_x1, test->expected_x2);
+        }
+
+        printf("\tР Р°СЃСЃС‡РёС‚Р°РЅРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РєРѕСЂРЅРµР№: %d\n", result->result_type);
+        if (result->result_type == OneRoot) {
+            printf("\tР Р°СЃСЃС‡РёС‚Р°РЅРЅС‹Р№ РєРѕСЂРµРЅСЊ: x = %lg\n", result->x1);
+        } else if (result->result_type == TwoRoots) {
+            printf("\tР Р°СЃСЃС‡РёС‚Р°РЅРЅС‹Рµ РєРѕСЂРЅРё: x1 = %lg, x2 = %lg\n", result->x1, result->x2);
+        }
+    }
+}
+
+enum TestResult check_roots(const struct Test* test, const SquareEquationResult* result) {
+    if (result->result_type == test->expected_roots_num) {
+        switch (result->result_type) {
             case NoRoots:
             case InfRoots:
-                printf("Тест № %d пройден\n", test_num);
                 return TEST_PASSED;
 
             case OneRoot:
-                if (is_close(result.x1, test.expected_x1)) {
-                    printf("Тест № %d пройден\n", test_num);
+                if (is_close(result->x1, test->expected_x1)) {
                     return TEST_PASSED;
                 }
                 break;
 
             case TwoRoots:
-                if ((is_close(result.x1, test.expected_x1) &&
-                     is_close(result.x2, test.expected_x2))    ||
-                    (is_close(result.x1, test.expected_x2) &&
-                     is_close(result.x2, test.expected_x1))) {
-                    printf("Тест № %d пройден\n", test_num);
+                if ((is_close(result->x1, test->expected_x1) &&
+                     is_close(result->x2, test->expected_x2))    ||
+                    (is_close(result->x1, test->expected_x2) &&
+                     is_close(result->x2, test->expected_x1))) {
                     return TEST_PASSED;
                 }
                 break;
         }
     }
 
-    printf("Тест № %d НЕ пройден\n\tКоэффициенты: a = %lg, b = %lg, c = %lg\n",
-        test_num, test.a, test.b, test.c);
-    printf("\tОжидаемое количество корней: %d\n", test.expected_roots_num);
-
-    if (test.expected_roots_num == OneRoot) {
-        printf("\tОжидаемый корень: x = %lg\n", test.expected_x1);
-    }
-
-    else if (test.expected_roots_num == TwoRoots) {
-        printf("\tОжидаемые корни: x1 = %lg, x2 = %lg\n", test.expected_x1, test.expected_x2);
-    }
-
-    printf("\tРассчитанное количество корней: %d\n", result.result_type);
-    if (result.result_type == OneRoot) {
-        printf("\tРассчитанный корень: x = %lg\n", result.x1);
-    } else if (result.result_type == TwoRoots) {
-        printf("\tРассчитанные корни: x1 = %lg, x2 = %lg\n", result.x1, result.x2);
-    }
-
     return TEST_FAILED;
+}
+
+enum TestResult run_test(struct Test test, int test_num) {
+    SquareEquationCoefficient coeffs = { test.a, test.b, test.c };
+    SquareEquationResult result = solve_square_equation(coeffs);
+    enum TestResult test_result = check_roots(&test, &result);
+    print_test_result(test_num, &test, &result, test_result);
+    return test_result;
 }
 
 void run_tests() {
@@ -98,5 +104,5 @@ void run_tests() {
         }
     }
 
-    printf("\nТестирование завершено. Количество неудачных тестов: %d\n", failed_tests_counter);
+    printf("\nРўРµСЃС‚РёСЂРѕРІР°РЅРёРµ Р·Р°РІРµСЂС€РµРЅРѕ. РљРѕР»РёС‡РµСЃС‚РІРѕ РЅРµСѓРґР°С‡РЅС‹С… С‚РµСЃС‚РѕРІ: %d\n", failed_tests_counter);
 }
