@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <io.h>
+#include <cctype>
 #include <math.h>
 #include <assert.h>
 #include <stdbool.h>
@@ -12,40 +14,45 @@ static bool get_number_input(double* value, const char* message) {
     assert(value != NULL);
     assert(message != NULL);
 
-    printf("%s", message);
+    if (isatty(fileno(stdin))) {
+        printf("%s", message);
+    }
 
     int ch = 0;
 
     if (scanf("%lf", value) == 1) {
         while ((ch = getchar()) != '\n' && ch != EOF) {
-            if (ch != ' ' && ch != '\t' && ch != EOF) {
-                printf("Îøèáêà ââîäà! Ââåäèòå ÷èñëîâîå çíà÷åíèå.\n");
-                return false;
-            }else if (ch == EOF) {
-                printf("Îøèáêà ââîäà! Îáíàðóæåí EOF.\n");
+            if (!isspace(ch)) {
+                printf("ÐžÑˆÐ¸Ð±ÐºÐ° Ð²Ð²Ð¾Ð´Ð°! Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾Ð²Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ.\n");
+                while ((ch = getchar()) != '\n' && ch != EOF) {}
                 return false;
             }
         }
         return true;
-    } else if ((ch = getchar()) != '\n' && ch != EOF && ch != ' ') {
-        printf("Îøèáêà ââîäà! Ââåäèòå ÷èñëîâîå çíà÷åíèå.\n");
+    } else if (feof(stdin)) {
+        printf("ÐžÑˆÐ¸Ð±ÐºÐ° Ð²Ð²Ð¾Ð´Ð°! ÐžÐ±Ð½Ð°Ñ€ÑƒÐ¶ÐµÐ½ EOF.\n");
+        return false;
+    } else {
+        printf("ÐžÑˆÐ¸Ð±ÐºÐ° Ð²Ð²Ð¾Ð´Ð°! Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾Ð²Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ.\n");
+        while ((ch = getchar()) != '\n' && ch != EOF) {}
         return false;
     }
-    return true;
 }
 
 int get_coefficients(SquareEquationCoefficient* coeffts) {
     const char* messages[] = {
-        "Ââåäèòå êîýôôèöèåíò a: ",
-        "Ââåäèòå êîýôôèöèåíò b: ",
-        "Ââåäèòå êîýôôèöèåíò c: "
+        "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚ a: ",
+        "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚ b: ",
+        "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚ c: "
     };
 
     double* coeffs[NUM_COEFFS] = { &coeffts->a, &coeffts->b, &coeffts->c };
 
     for (size_t i = 0; i < NUM_COEFFS; i++) {
-        while (get_number_input(coeffs[i], messages[i]) == false) {
-            get_number_input(coeffs[i], messages[i]);
+        while (!get_number_input(coeffs[i], messages[i])) {
+            if (feof(stdin)) {
+                return ERROR_CODE;
+            }
         }
     }
     return SUCCESS;
@@ -54,19 +61,19 @@ int get_coefficients(SquareEquationCoefficient* coeffts) {
 void print_solution(SquareEquationResult result) {
     switch (result.result_type) {
         case InfRoots:
-            printf("Óðàâíåíèå èìååò áåñêîíå÷íî ìíîãî êîðíåé.\n");
+            printf("Ð£Ñ€Ð°Ð²Ð½ÐµÐ½Ð¸Ðµ Ð¸Ð¼ÐµÐµÑ‚ Ð±ÐµÑÐºÐ¾Ð½ÐµÑ‡Ð½Ð¾ Ð¼Ð½Ð¾Ð³Ð¾ ÐºÐ¾Ñ€Ð½ÐµÐ¹.\n");
             break;
         case TwoRoots:
-            printf("Êîðíè óðàâíåíèÿ: x1 = %.2f, x2 = %.2f\n", result.x1, result.x2);
+            printf("ÐšÐ¾Ñ€Ð½Ð¸ ÑƒÑ€Ð°Ð²Ð½ÐµÐ½Ð¸Ñ: x1 = %.2f, x2 = %.2f\n", result.x1, result.x2);
             break;
         case OneRoot:
-            printf("Îäèí êîðåíü óðàâíåíèÿ: x = %.2f\n", result.x1);
+            printf("ÐžÐ´Ð¸Ð½ ÐºÐ¾Ñ€ÐµÐ½ÑŒ ÑƒÑ€Ð°Ð²Ð½ÐµÐ½Ð¸Ñ: x = %.2f\n", result.x1);
             break;
         case NoRoots:
-            printf("Óðàâíåíèå íå èìååò âåùåñòâåííûõ êîðíåé.\n");
+            printf("Ð£Ñ€Ð°Ð²Ð½ÐµÐ½Ð¸Ðµ Ð½Ðµ Ð¸Ð¼ÐµÐµÑ‚ Ð²ÐµÑ‰ÐµÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ñ… ÐºÐ¾Ñ€Ð½ÐµÐ¹.\n");
             break;
         default:
-            printf("Îøèáêà: Íåèçâåñòíûé òèï ðåçóëüòàòà.\n");
+            printf("ÐžÑˆÐ¸Ð±ÐºÐ°: ÐÐµÐ¸Ð·Ð²ÐµÑÑ‚Ð½Ñ‹Ð¹ Ñ‚Ð¸Ð¿ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð°.\n");
             break;
     }
 }
