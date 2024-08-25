@@ -2,7 +2,7 @@
 #define TESTMODE_SOLVER_H
 
 /**
- * @brief Запускает тесты из файла.
+ * @brief Р—Р°РїСѓСЃРєР°РµС‚ С‚РµСЃС‚С‹ РёР· С„Р°Р№Р»Р°.
  */
 void run_tests();
 
