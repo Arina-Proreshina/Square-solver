@@ -1,6 +1,4 @@
 # Square-solver
-Программа для решения квадратного уравнения.
+It is Quadratic Equation Solver.
 
-Эта программа позволяет пользователю ввести коэффициенты квадратного уравнения
-и вычислить его корни. Она включает в себя функции для получения ввода, решения
-квадратного уравнения и печати результатов.
+This program allows the user to enter the coefficients of a quadratic equation and calculate its roots. It includes functions for receiving input, solving the quadratic equation, and printing the results.
